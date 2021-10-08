@@ -3,6 +3,8 @@ package com.versa.particles.utils;
 import android.util.Log;
 
 
+import com.versa.particles.BuildConfig;
+
 import java.security.InvalidParameterException;
 
 /**
@@ -54,7 +56,7 @@ public class LogWrapper {
      * @return
      */
     private static boolean isLoggable(int level) {
-        return /*BuildConfig.DEBUG || */Log.isLoggable(LOG_TAG, level) || MOBILE;
+        return BuildConfig.DEBUG || Log.isLoggable(LOG_TAG, level) || MOBILE;
     }
 
     public static void init() {

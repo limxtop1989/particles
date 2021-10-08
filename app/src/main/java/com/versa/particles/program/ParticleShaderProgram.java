@@ -19,7 +19,7 @@ public class ParticleShaderProgram extends ShaderProgram {
     private final int aDirectionVectorLocation;
     private final int aParticleStartTimeLocation;
 
-    protected ParticleShaderProgram(Context context) {
+    public ParticleShaderProgram(Context context) {
         super(context, R.raw.particle_vertex_shader, R.raw.particle_fragment_shader);
         uMatrixLocation = GLES20.glGetUniformLocation(program, U_MATRIX);
         uTimeLocation = GLES20.glGetUniformLocation(program, U_TIME);

@@ -2,7 +2,7 @@ package com.versa.particles.objects;
 
 public class Geometry {
 
-    public class Point {
+    public static class Point {
         private float x;
         private float y;
         private float z;
@@ -25,7 +25,7 @@ public class Geometry {
         }
     }
 
-    public class Vector {
+    public static class Vector {
         private float x;
         private float y;
         private float z;
