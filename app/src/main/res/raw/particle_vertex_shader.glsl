@@ -19,6 +19,6 @@ void main() {
     v_Color = a_Color;
     v_ElapsedTime = u_Time - a_ParticleStartTime;
     vec3 currentPosition = a_Position + (a_DirectionVector * v_ElapsedTime);
-    gl_position = u_Matrix * vec4(currentPosition, 1.0);
-    gl_PositionSize = 10.0;
+    gl_Position = u_Matrix * vec4(currentPosition, 1.0);
+    gl_PointSize = 10.0;
 }

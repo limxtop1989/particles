@@ -4,9 +4,11 @@ import static com.versa.particles.Constants.BYTES_PER_FLOAT;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
+import android.util.EventLog;
 
 import com.versa.particles.data.VertexArray;
 import com.versa.particles.program.ParticleShaderProgram;
+import com.versa.particles.utils.LogWrapper;
 
 public class ParticleSystem {
     private static final int POSITION_COMPONENT_COUNT = 3;
@@ -27,14 +29,14 @@ public class ParticleSystem {
     private int nextParticle;
 
     public ParticleSystem(int maxParticleCount) {
-        particles = new float[maxParticleCount * STRIDE];
+        particles = new float[maxParticleCount * TOTAL_COMPONENT_COUNT];
         vertexArray = new VertexArray(particles);
         this.maxParticleCount = maxParticleCount;
     }
 
     public void addParticle(Geometry.Point position, int color, Geometry.Vector direction,
                             float particleStartTime) {
-        final int particleOffset = nextParticle * STRIDE;
+        final int particleOffset = nextParticle * TOTAL_COMPONENT_COUNT;
 
         int currentOffset = particleOffset;
         nextParticle++;
