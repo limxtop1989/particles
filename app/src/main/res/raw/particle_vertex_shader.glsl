@@ -18,7 +18,9 @@ varying float v_ElapsedTime;
 void main() {
     v_Color = a_Color;
     v_ElapsedTime = u_Time - a_ParticleStartTime;
+    float gravityFactor = v_ElapsedTime * v_ElapsedTime / 4.0;// caution: divide to float value.
     vec3 currentPosition = a_Position + (a_DirectionVector * v_ElapsedTime);
+    currentPosition.y -= gravityFactor;// s = v0 * t + a * t^2 / 2
     gl_Position = u_Matrix * vec4(currentPosition, 1.0);
     gl_PointSize = 10.0;
 }
