@@ -34,6 +34,9 @@ public class ParticlesRender implements GLSurfaceView.Renderer {
     private ParticleShooter greenParticleShooter;
     private ParticleShooter blueParticleShooter;
 
+    private final float angleVariance = 5f;// degree unit
+    private final float speedVariance = 1f;
+
     private long globalStartTime;
 
     public ParticlesRender(Context context) {
@@ -52,13 +55,13 @@ public class ParticlesRender implements GLSurfaceView.Renderer {
         final Geometry.Vector particleDirection = new Geometry.Vector(0.0f, 0.5f, 0.0f);
 
         redParticleShooter = new ParticleShooter(new Geometry.Point(-1f, 0.0f, 0.0f),
-                particleDirection, Color.rgb(255, 50, 5));
+                particleDirection, Color.rgb(255, 50, 5), angleVariance, speedVariance);
 
         greenParticleShooter = new ParticleShooter(new Geometry.Point(0.0f, 0.0f, 0.0f),
-                particleDirection, Color.rgb(25, 255, 25));
+                particleDirection, Color.rgb(25, 255, 25), angleVariance, speedVariance);
 
         blueParticleShooter = new ParticleShooter(new Geometry.Point(1.0f, 0.0f, 0.0f),
-                particleDirection, Color.rgb(5, 50, 255));
+                particleDirection, Color.rgb(5, 50, 255), angleVariance, speedVariance);
     }
 
     @Override
