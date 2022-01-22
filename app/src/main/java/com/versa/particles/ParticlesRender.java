@@ -62,6 +62,13 @@ public class ParticlesRender implements GLSurfaceView.Renderer {
 
         blueParticleShooter = new ParticleShooter(new Geometry.Point(0.8f, 0.0f, 0.0f),
                 particleDirection, Color.rgb(5, 50, 255), angleVariance, speedVariance);
+
+        // Enable blending. blend equation:
+        // output = (source factor * source fragment) + (destination factor * destination fragment)
+        // source fragment comes from the fragment shader.
+        // destination fragment is what's already there in the frame buffer.
+        GLES20.glEnable(GLES20.GL_BLEND);
+        GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE);
     }
 
     @Override
