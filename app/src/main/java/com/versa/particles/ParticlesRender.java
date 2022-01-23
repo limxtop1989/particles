@@ -15,6 +15,7 @@ import com.versa.particles.objects.ParticleShooter;
 import com.versa.particles.objects.ParticleSystem;
 import com.versa.particles.program.ParticleShaderProgram;
 import com.versa.particles.utils.LogWrapper;
+import com.versa.particles.utils.TextureHelper;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -38,6 +39,8 @@ public class ParticlesRender implements GLSurfaceView.Renderer {
     private final float speedVariance = 1f;
 
     private long globalStartTime;
+
+    private int texture;
 
     public ParticlesRender(Context context) {
         this.context = context;
@@ -69,6 +72,9 @@ public class ParticlesRender implements GLSurfaceView.Renderer {
         // destination fragment is what's already there in the frame buffer.
         GLES20.glEnable(GLES20.GL_BLEND);
         GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE);
+
+        //
+        texture = TextureHelper.loadTexture(context, R.drawable.particle_texture);
     }
 
     @Override
@@ -94,7 +100,7 @@ public class ParticlesRender implements GLSurfaceView.Renderer {
         blueParticleShooter.addParticles(particleSystem, currentTime, 5);
 
         particleProgram.useProgram();
-        particleProgram.setUniforms(viewProjectionMatrix, currentTime);
+        particleProgram.setUniforms(viewProjectionMatrix, currentTime, texture);
         particleSystem.bindData(particleProgram);
         particleSystem.draw();
     }
